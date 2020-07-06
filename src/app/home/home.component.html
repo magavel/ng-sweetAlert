@@ -1,0 +1,31 @@
+<p>home works!</p>
+<button [swal]="['Oops!', 'This is not implemented yet :/', 'success']" >clic</button>
+<br>
+<br>
+<br>
+<br>
+
+<button [swal]="{
+          title: 'quelle est votre série préférée ?',
+          input: 'text'
+        }"
+        (confirm)="saveTvShow($event)"
+        (cancel)="cancelTvShow($event)"
+>Série préférée ?</button>
+<br>
+{{ message }}
+<br>
+
+<div class="results" *ngIf="results && results.length">
+  <div class="movie" *ngFor="let movie of results">
+    <h3>{{ movie.original_title }}</h3>
+    <div *ngIf="movie.poster_path">
+        <img [src]="imgURL+ movie.poster_path">
+    </div>
+    <div *ngIf="!movie.poster_path">
+        <p>pas d'image dispo</p>
+    </div>
+
+
+  </div>
+</div>

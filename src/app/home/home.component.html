@@ -6,19 +6,19 @@
 <br>
 
 <button [swal]="{
-          title: 'quelle est votre série préférée ?',
+          title: 'Titre du film ou de la série',
           input: 'text'
         }"
         (confirm)="saveTvShow($event)"
         (cancel)="cancelTvShow($event)"
->Série préférée ?</button>
+>Chercher un film</button>
 <br>
 {{ message }}
 <br>
-
 <div class="results" *ngIf="results && results.length">
-  <div class="movie" *ngFor="let movie of results">
-    <h3>{{ movie.original_title }}</h3>
+  <div class="movie" *ngFor="let movie of results" (click)="showOverview(movie)">
+    <h3>{{ movie.original_title <10 ? movie.original_title: movie.original_title.slice(0 , 9) }}...</h3>
+    <p>date: {{ movie.release_date }}</p>
     <div *ngIf="movie.poster_path">
         <img [src]="imgURL+ movie.poster_path">
     </div>
@@ -29,3 +29,5 @@
 
   </div>
 </div>
+
+<swal #movieSwal></swal>
